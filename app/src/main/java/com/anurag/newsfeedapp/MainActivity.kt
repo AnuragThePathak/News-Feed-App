@@ -18,7 +18,7 @@ class MainActivity : AppCompatActivity(), ItemTapped {
 
     }
 
-    private fun generateData(): ArrayList<String> {
+    fun generateData(): ArrayList<String> {
         val dataset = ArrayList<String>()
         for (i in 0..200) {
             dataset.add("This is row no. ${i + 1}")

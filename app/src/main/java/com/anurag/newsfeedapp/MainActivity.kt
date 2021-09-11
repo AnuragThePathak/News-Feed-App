@@ -3,30 +3,52 @@ package com.anurag.newsfeedapp
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.android.volley.Request
+import com.android.volley.toolbox.JsonObjectRequest
 import com.anurag.newsfeedapp.databinding.ActivityMainBinding
 
-class MainActivity : AppCompatActivity(), ItemTapped {
+class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
+    private lateinit var adapter: NewsListAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val dataSet = generateData()
-        binding.recyclerView.adapter = NewsListAdapter(dataSet, this)
+        adapter = NewsListAdapter()
+        binding.recyclerView.adapter = adapter
+        fetchData()
 
     }
 
-    fun generateData(): ArrayList<String> {
-        val dataset = ArrayList<String>()
-        for (i in 0..200) {
-            dataset.add("This is row no. ${i + 1}")
-        }
-        return dataset
+    private fun fetchData() {
+        val url = "https://saurav.tech/NewsAPI/top-headlines/category/general/in.json"
+
+        val jsonObjectRequest = JsonObjectRequest(
+            Request.Method.GET, url, null,
+            { response ->
+                val jsonArray = response.getJSONArray("articles")
+                val newsArray = ArrayList<News>()
+
+                for (i in 0 until jsonArray.length()) {
+                    val jsonObject = jsonArray.getJSONObject(i)
+
+                    newsArray += News(
+                        jsonObject.getString("title"), jsonObject.getString("url"),
+                        jsonObject.getString("urlToImage"), jsonObject.getString("description")
+                    )
+                }
+
+                adapter.updateNews(newsArray)
+            },
+            {
+                Toast.makeText(this, "Something went wrong", Toast.LENGTH_LONG).show()
+            }
+        )
+
+// Access the RequestQueue through your singleton class.
+        MySingleton.getInstance(this).addToRequestQueue(jsonObjectRequest)
     }
 
-    override fun onRecyclerTapped(item: String) {
-        Toast.makeText(this, "$item is tapped.", Toast.LENGTH_SHORT).show()
-    }
 }

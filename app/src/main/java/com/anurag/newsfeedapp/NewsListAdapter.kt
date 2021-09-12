@@ -3,8 +3,10 @@ package com.anurag.newsfeedapp
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 
 class NewsListAdapter : RecyclerView.Adapter<ViewHolder>() {
     private val newsArray = ArrayList<News>()
@@ -17,7 +19,10 @@ class NewsListAdapter : RecyclerView.Adapter<ViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.textView.text = newsArray[position].title
+        holder.titleView.text = newsArray[position].title
+        holder.descriptionView.text = newsArray[position].description
+        Glide.with(holder.imageView.context).load(newsArray[position].imageUrl)
+            .centerCrop().into(holder.imageView)
     }
 
     override fun getItemCount() = newsArray.size
@@ -31,7 +36,9 @@ class NewsListAdapter : RecyclerView.Adapter<ViewHolder>() {
 }
 
 class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-    val textView: TextView = view.findViewById(R.id.text_view)
+    val titleView: TextView = view.findViewById(R.id.title_view)
+    val descriptionView: TextView = view.findViewById(R.id.description_view)
+    val imageView: ImageView = view.findViewById(R.id.image_view)
 }
 
 // We are using interface for this function because we need it in two functions

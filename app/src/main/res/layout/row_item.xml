@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="10dp"
-    app:cardCornerRadius="10dp"
+    app:cardCornerRadius="7dp"
     app:cardElevation="7dp"
     app:cardPreventCornerOverlap="true">
 
@@ -34,6 +34,14 @@
             android:layout_height="wrap_content"
             android:ellipsize="end"
             android:maxLines="2"
+            app:layout_constraintBottom_toTopOf="@id/source_view" />
+
+        <TextView
+            android:id="@+id/source_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            android:translationX="3dp"
             app:layout_constraintBottom_toBottomOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 

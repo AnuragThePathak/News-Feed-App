@@ -35,15 +35,22 @@ class MainActivity : AppCompatActivity() {
                     val jsonObject = jsonArray.getJSONObject(i)
 
                     newsArray += News(
-                        jsonObject.getString("title"), jsonObject.getString("url"),
-                        jsonObject.getString("urlToImage"), jsonObject.getString("description")
+                        jsonObject.getString("title"),
+                        jsonObject.getString("url"),
+                        jsonObject.getString("urlToImage"),
+                        jsonObject.getString("description"),
+                        jsonObject.getJSONObject("source")
+                            .getString("name")
                     )
                 }
 
                 adapter.updateNews(newsArray)
             },
             {
-                Toast.makeText(this, "Something went wrong", Toast.LENGTH_LONG).show()
+                Toast.makeText(
+                    this, "Something went wrong",
+                    Toast.LENGTH_LONG
+                ).show()
             }
         )
 

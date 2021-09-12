@@ -21,6 +21,7 @@ class NewsListAdapter : RecyclerView.Adapter<ViewHolder>() {
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.titleView.text = newsArray[position].title
         holder.descriptionView.text = newsArray[position].description
+        holder.sourceView.text = newsArray[position].source
         Glide.with(holder.imageView.context).load(newsArray[position].imageUrl)
             .centerCrop().into(holder.imageView)
     }
@@ -38,6 +39,7 @@ class NewsListAdapter : RecyclerView.Adapter<ViewHolder>() {
 class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
     val titleView: TextView = view.findViewById(R.id.title_view)
     val descriptionView: TextView = view.findViewById(R.id.description_view)
+    val sourceView: TextView = view.findViewById(R.id.source_view)
     val imageView: ImageView = view.findViewById(R.id.image_view)
 }
 

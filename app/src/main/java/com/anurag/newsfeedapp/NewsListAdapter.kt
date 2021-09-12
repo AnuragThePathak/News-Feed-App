@@ -8,14 +8,20 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 
-class NewsListAdapter : RecyclerView.Adapter<ViewHolder>() {
+class NewsListAdapter(private val listener: OnRecyclerTap) :
+    RecyclerView.Adapter<ViewHolder>() {
     private val newsArray = ArrayList<News>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.row_item, parent, false)
 
-        return ViewHolder(view)
+        val viewHolder = ViewHolder(view)
+        view.setOnClickListener {
+            listener.onClickNew(newsArray[viewHolder.adapterPosition].url)
+        }
+
+        return viewHolder
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
@@ -45,3 +51,6 @@ class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
 // We are using interface for this function because we need it in two functions
 // without creating instances
+interface OnRecyclerTap {
+    fun onClickNew(url: String)
+}

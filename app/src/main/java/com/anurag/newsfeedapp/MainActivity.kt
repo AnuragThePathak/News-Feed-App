@@ -1,13 +1,16 @@
 package com.anurag.newsfeedapp
 
+import android.net.Uri
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.browser.customtabs.CustomTabsIntent
 import com.android.volley.Request
 import com.android.volley.toolbox.JsonObjectRequest
 import com.anurag.newsfeedapp.databinding.ActivityMainBinding
 
-class MainActivity : AppCompatActivity() {
+
+class MainActivity : AppCompatActivity(), OnRecyclerTap {
     private lateinit var binding: ActivityMainBinding
     private lateinit var adapter: NewsListAdapter
 
@@ -16,7 +19,7 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        adapter = NewsListAdapter()
+        adapter = NewsListAdapter(this)
         binding.recyclerView.adapter = adapter
         fetchData()
 
@@ -58,4 +61,11 @@ class MainActivity : AppCompatActivity() {
         MySingleton.getInstance(this).addToRequestQueue(jsonObjectRequest)
     }
 
+    //    fun fetchData() ends
+    override fun onClickNew(url: String) {
+        val builder = CustomTabsIntent.Builder()
+        val customTabsIntent = builder.build()
+        customTabsIntent.launchUrl(this, Uri.parse(url))
+
+    }
 }

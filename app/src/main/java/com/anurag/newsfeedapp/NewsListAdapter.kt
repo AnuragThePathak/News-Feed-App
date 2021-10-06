@@ -28,6 +28,7 @@ class NewsListAdapter(private val listener: OnRecyclerTap) :
         holder.titleView.text = newsArray[position].title
         holder.descriptionView.text = newsArray[position].description
         holder.sourceView.text = newsArray[position].source
+
         Glide.with(holder.imageView.context).load(newsArray[position].imageUrl)
             .centerCrop().into(holder.imageView)
     }

@@ -19,6 +19,8 @@ class MainActivity : AppCompatActivity(), OnRecyclerTap {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        getSupportActionBar()?.setTitle("Latest News");
+
         adapter = NewsListAdapter(this)
         binding.recyclerView.adapter = adapter
         fetchData()

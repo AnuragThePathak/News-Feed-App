@@ -10,6 +10,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraint_lay"
+        android:background="@drawable/news_item_bg"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -17,6 +18,7 @@
             android:id="@+id/image_view"
             android:layout_width="match_parent"
             android:layout_height="180dp"
+            android:layout_margin="5dp"
             app:layout_constraintBottom_toTopOf="@+id/title_view"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -24,6 +26,10 @@
             android:id="@+id/title_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_semibold"
+            android:textColor="#303030"
+            android:includeFontPadding="false"
+            android:layout_margin="5dp"
             android:ellipsize="end"
             android:maxLines="3"
             android:textSize="16sp"
@@ -33,6 +39,10 @@
             android:id="@+id/description_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/product_sans_regular"
+            android:textColor="#1F1F1F"
+            android:includeFontPadding="false"
+            android:layout_margin="5dp"
             android:ellipsize="end"
             android:maxLines="2"
             app:layout_constraintBottom_toTopOf="@id/source_view" />
@@ -41,6 +51,10 @@
             android:id="@+id/source_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="#1B1C1E"
+            android:fontFamily="@font/product_sans_regular"
+            android:includeFontPadding="false"
+            android:layout_margin="5dp"
             android:textSize="12sp"
             android:translationX="3dp"
             app:layout_constraintBottom_toBottomOf="parent" />

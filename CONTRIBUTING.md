@@ -32,13 +32,19 @@ Finally, commit your changes and add a commit message using the following comman
 
         > git commit -m 'commit-message'
         
-  7) **Raise a Pull Request**
+  7) **Push the changes**
 
-After commiting the changes come back to this repository and you will reload this repo, you will then an option which says 
+After commiting the changes you have to push these changes into your remote repo using the below command
+
+        > git push origin <feature_branch_name>
+        
+  8) **Raise a Pull Request**
+
+After pushing the changes come back to this repository and reload this repo, you will then find an option that says 
 
 **"Compare and Pull request"**
 
-Click on that and you will have to give the title and description of the changes you made
+Click on that and you will have to give the title and description of the changes you made and finally click on the **Create pull request** button
 
 
    **Thats It you have successfully made your contribution 🎉**

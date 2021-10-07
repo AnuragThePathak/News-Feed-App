@@ -8,7 +8,8 @@
  while making any changes.
  - Never commit the .idea directory.
 
-If you want to make a contribution to the repository, follow these steps :
+
+###If you want to make a contribution to the repository, follow these steps :
 
   1) **Fork this repository** to your own Github account by clicking the Fork button on the top right corner.
   You can use GUI of android studio rather then using command line instructions for rest of the steps.

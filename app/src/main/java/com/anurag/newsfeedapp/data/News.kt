@@ -1,4 +1,4 @@
-package com.anurag.newsfeedapp
+package com.anurag.newsfeedapp.data
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

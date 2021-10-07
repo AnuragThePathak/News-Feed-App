@@ -6,9 +6,12 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.browser.customtabs.CustomTabsIntent
 import androidx.lifecycle.lifecycleScope
-import com.anurag.NewsFeedApplication
+import com.anurag.newsfeedapp.adapters.NewsListAdapter
+import com.anurag.newsfeedapp.adapters.OnRecyclerTap
+import com.anurag.newsfeedapp.data.News
+import com.anurag.newsfeedapp.data.NewsFeedRepository
 import com.anurag.newsfeedapp.databinding.ActivityMainBinding
-import com.anurag.repository.NewsFeedRepository
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 
@@ -43,7 +46,7 @@ class MainActivity : AppCompatActivity(), OnRecyclerTap {
     }
 
     private fun storeToDB(items: List<News>){
-        lifecycleScope.launch {
+        lifecycleScope.launch(Dispatchers.IO) {
             repo.storeAllNewsItems(items)
         }
     }

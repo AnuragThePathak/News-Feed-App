@@ -1,4 +1,4 @@
-package com.anurag.newsfeedapp
+package com.anurag.newsfeedapp.adapters
 
 import android.view.LayoutInflater
 import android.view.View
@@ -6,11 +6,20 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.anurag.newsfeedapp.R
+import com.anurag.newsfeedapp.data.News
 import com.bumptech.glide.Glide
 
 class NewsListAdapter(private val listener: OnRecyclerTap) :
-    RecyclerView.Adapter<ViewHolder>() {
+    RecyclerView.Adapter<NewsListAdapter.ViewHolder>() {
     private val newsArray = ArrayList<News>()
+
+    class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+        val titleView: TextView = view.findViewById(R.id.title_view)
+        val descriptionView: TextView = view.findViewById(R.id.description_view)
+        val sourceView: TextView = view.findViewById(R.id.source_view)
+        val imageView: ImageView = view.findViewById(R.id.image_view)
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
@@ -41,13 +50,6 @@ class NewsListAdapter(private val listener: OnRecyclerTap) :
 
         notifyDataSetChanged()
     }
-}
-
-class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-    val titleView: TextView = view.findViewById(R.id.title_view)
-    val descriptionView: TextView = view.findViewById(R.id.description_view)
-    val sourceView: TextView = view.findViewById(R.id.source_view)
-    val imageView: ImageView = view.findViewById(R.id.image_view)
 }
 
 // We are using interface for this function because we need it in two functions

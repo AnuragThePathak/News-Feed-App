@@ -1,10 +1,9 @@
-package com.anurag.db
+package com.anurag.newsfeedapp.data
 
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.anurag.newsfeedapp.News
 
 @Database(
     entities = [News::class],

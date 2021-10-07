@@ -5,14 +5,28 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.browser.customtabs.CustomTabsIntent
-import com.android.volley.Request
-import com.android.volley.toolbox.JsonObjectRequest
+import androidx.lifecycle.lifecycleScope
+import com.anurag.NewsFeedApplication
 import com.anurag.newsfeedapp.databinding.ActivityMainBinding
+import com.anurag.repository.NewsFeedRepository
+import kotlinx.coroutines.launch
 
 
 class MainActivity : AppCompatActivity(), OnRecyclerTap {
     private lateinit var binding: ActivityMainBinding
     private lateinit var adapter: NewsListAdapter
+
+    private val repo: NewsFeedRepository = NewsFeedRepository(
+        onSuccess = {
+            adapter.updateNews(it)
+            storeToDB(it)
+        }, onFailure = {
+            Toast.makeText(
+                this, "Something went wrong - $it",
+                Toast.LENGTH_LONG
+            ).show()
+        }
+    )
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,51 +37,20 @@ class MainActivity : AppCompatActivity(), OnRecyclerTap {
 
         adapter = NewsListAdapter(this)
         binding.recyclerView.adapter = adapter
-        fetchData()
 
+        repo.connectDatabase((application as NewsFeedApplication).database)
+        repo.getNewsFeed(this)
     }
 
-    private fun fetchData() {
-        val url = "https://saurav.tech/NewsAPI/top-headlines/category/general/in.json"
-
-        val jsonObjectRequest = JsonObjectRequest(
-            Request.Method.GET, url, null,
-            { response ->
-                val jsonArray = response.getJSONArray("articles")
-                val newsArray = ArrayList<News>()
-
-                for (i in 0 until jsonArray.length()) {
-                    val jsonObject = jsonArray.getJSONObject(i)
-
-                    newsArray += News(
-                        jsonObject.getString("title"),
-                        jsonObject.getString("url"),
-                        jsonObject.getString("urlToImage"),
-                        jsonObject.getString("description"),
-                        jsonObject.getJSONObject("source")
-                            .getString("name")
-                    )
-                }
-
-                adapter.updateNews(newsArray)
-            },
-            {
-                Toast.makeText(
-                    this, "Something went wrong",
-                    Toast.LENGTH_LONG
-                ).show()
-            }
-        )
-
-// Access the RequestQueue through your singleton class.
-        MySingleton.getInstance(this).addToRequestQueue(jsonObjectRequest)
+    private fun storeToDB(items: List<News>){
+        lifecycleScope.launch {
+            repo.storeAllNewsItems(items)
+        }
     }
 
-    //    fun fetchData() ends
     override fun onClickNew(url: String) {
         val builder = CustomTabsIntent.Builder()
         val customTabsIntent = builder.build()
         customTabsIntent.launchUrl(this, Uri.parse(url))
-
     }
 }

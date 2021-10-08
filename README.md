@@ -21,7 +21,7 @@ You need to have [Android Studio](https://developer.android.com/studio) to build
 # Contributing to this project
 All types of contributions are welcome!!
 
-Refer to [CONTRIBUTING.md](https://github.com/AnuragThePathak/News-Feed-App/blob/master/CONTRIBUTING.md) to get started with your contribution.
+Refer to [CONTRIBUTING.md](CONTRIBUTING.md) to get started with your contribution.
 
 Further, if you encounter a bug or have an idea for a new feature, feel free to raise an issue.
 

@@ -7,7 +7,7 @@ import androidx.room.RoomDatabase
 
 @Database(
     entities = [News::class],
-    version = 1,
+    version = 3,
     exportSchema = false
 )
 abstract class NewsFeedDatabase : RoomDatabase() {
@@ -24,7 +24,7 @@ abstract class NewsFeedDatabase : RoomDatabase() {
                     context.applicationContext,
                     NewsFeedDatabase::class.java,
                     "news_list"
-                ).build()
+                ).fallbackToDestructiveMigration().build()
                 INSTANCE = instance
                 instance
             }

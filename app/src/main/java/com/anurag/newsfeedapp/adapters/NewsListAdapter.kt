@@ -10,7 +10,7 @@ import com.anurag.newsfeedapp.R
 import com.anurag.newsfeedapp.data.News
 import com.bumptech.glide.Glide
 
-class NewsListAdapter(private val listener: OnRecyclerTap) :
+class NewsListAdapter(private val listener: (String) -> Unit) :
     RecyclerView.Adapter<NewsListAdapter.ViewHolder>() {
     private val newsArray = ArrayList<News>()
 
@@ -27,7 +27,7 @@ class NewsListAdapter(private val listener: OnRecyclerTap) :
 
         val viewHolder = ViewHolder(view)
         view.setOnClickListener {
-            listener.onClickNew(newsArray[viewHolder.adapterPosition].url)
+            listener(newsArray[viewHolder.adapterPosition].url)
         }
 
         return viewHolder
@@ -50,10 +50,4 @@ class NewsListAdapter(private val listener: OnRecyclerTap) :
 
         notifyDataSetChanged()
     }
-}
-
-// We are using interface for this function because we need it in two functions
-// without creating instances
-interface OnRecyclerTap {
-    fun onClickNew(url: String)
 }

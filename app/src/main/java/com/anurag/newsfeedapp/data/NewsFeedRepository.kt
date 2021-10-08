@@ -6,6 +6,7 @@ import com.android.volley.toolbox.JsonObjectRequest
 import com.anurag.newsfeedapp.MySingleton
 
 class NewsFeedRepository(
+    private val newsFeedDao: NewsFeedDao,
     onSuccess: (ArrayList<News>) -> Unit,
     onFailure: (String?) -> Unit
 ) {
@@ -34,18 +35,12 @@ class NewsFeedRepository(
         }
     )
 
-    private var databaseInstance: NewsFeedDatabase? = null
-
-    fun connectDatabase(database: NewsFeedDatabase) {
-        databaseInstance = database
-    }
-
     fun getNewsFeed(context: Context) {
         MySingleton.getInstance(context).addToRequestQueue(jsonObjectRequest)
     }
 
     suspend fun storeAllNewsItems(items: List<News>) {
-        databaseInstance?.newsFeedDao()?.saveAllNews(items)
+        newsFeedDao.saveAllNews(items)
     }
 
     companion object {

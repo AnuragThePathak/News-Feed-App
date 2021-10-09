@@ -11,5 +11,6 @@ data class News(
     @ColumnInfo(name = "url") val url: String,
     @ColumnInfo(name = "image_url") val imageUrl: String,
     @ColumnInfo(name = "description") val description: String,
-    @ColumnInfo(name = "source") val source: String
+    @ColumnInfo(name = "source") val source: String,
+    @ColumnInfo(name = "time") val time : String
 )

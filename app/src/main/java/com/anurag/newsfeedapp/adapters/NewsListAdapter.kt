@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.anurag.newsfeedapp.R
 import com.anurag.newsfeedapp.data.News
 import com.bumptech.glide.Glide
+import org.w3c.dom.Text
 
 class NewsListAdapter(private val listener: (String) -> Unit) :
     RecyclerView.Adapter<NewsListAdapter.ViewHolder>() {
@@ -19,6 +20,7 @@ class NewsListAdapter(private val listener: (String) -> Unit) :
         val descriptionView: TextView = view.findViewById(R.id.description_view)
         val sourceView: TextView = view.findViewById(R.id.source_view)
         val imageView: ImageView = view.findViewById(R.id.image_view)
+        val timeView: TextView = view.findViewById(R.id.time_view)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -37,7 +39,7 @@ class NewsListAdapter(private val listener: (String) -> Unit) :
         holder.titleView.text = newsArray[position].title
         holder.descriptionView.text = newsArray[position].description
         holder.sourceView.text = newsArray[position].source
-
+        holder.timeView.text = newsArray[position].time
         Glide.with(holder.imageView.context).load(newsArray[position].imageUrl)
             .centerCrop().into(holder.imageView)
     }

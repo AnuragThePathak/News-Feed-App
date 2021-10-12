@@ -14,3 +14,8 @@ data class News(
     @ColumnInfo(name = "source") val source: String,
     @ColumnInfo(name = "time") val time : String
 )
+
+data class NewsResponse(
+    val news: List<News> = emptyList(),
+    val errorMessage: String? = null
+)

@@ -9,7 +9,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.anurag.newsfeedapp.R
 import com.anurag.newsfeedapp.data.News
 import com.bumptech.glide.Glide
-import org.w3c.dom.Text
 
 class NewsListAdapter(private val listener: (String) -> Unit) :
     RecyclerView.Adapter<NewsListAdapter.ViewHolder>() {
@@ -46,7 +45,7 @@ class NewsListAdapter(private val listener: (String) -> Unit) :
 
     override fun getItemCount() = newsArray.size
 
-    fun updateNews(updatedNews: ArrayList<News>) {
+    fun updateNews(updatedNews: List<News>) {
         newsArray.clear()
         newsArray += updatedNews
 

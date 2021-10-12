@@ -20,16 +20,7 @@ class MainActivity : AppCompatActivity() {
 
     private val repository: NewsFeedRepository by lazy {
         NewsFeedRepository(
-            newsFeedDao = (application as NewsFeedApplication).dataBase.newsFeedDao(),
-            onSuccess = {
-                adapter.updateNews(it)
-                storeToDB(it)
-            }, onFailure = {
-                Toast.makeText(
-                    this, "Something went wrong - $it",
-                    Toast.LENGTH_LONG
-                ).show()
-            }
+            newsFeedDao = (application as NewsFeedApplication).dataBase.newsFeedDao()
         )
     }
 
@@ -48,12 +39,12 @@ class MainActivity : AppCompatActivity() {
 
         binding.recyclerView.adapter = adapter
 
-        repository.getNewsFeed(this)
-    }
-
-    private fun storeToDB(items: List<News>) {
-        lifecycleScope.launch(Dispatchers.IO) {
-            repository.storeAllNewsItems(items)
+        lifecycleScope.launchWhenCreated {
+            val newsResponse = repository.getNewsFeed(this@MainActivity.applicationContext)
+            adapter.updateNews(newsResponse.news)
+            newsResponse.errorMessage?.let {
+                Toast.makeText(this@MainActivity, "Something went wrong - $it", Toast.LENGTH_LONG).show()
+            }
         }
     }
 }

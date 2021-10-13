@@ -7,12 +7,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.browser.customtabs.CustomTabsIntent
 import androidx.lifecycle.lifecycleScope
 import com.anurag.newsfeedapp.adapters.NewsListAdapter
-import com.anurag.newsfeedapp.data.News
 import com.anurag.newsfeedapp.data.NewsFeedRepository
 import com.anurag.newsfeedapp.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @AndroidEntryPoint

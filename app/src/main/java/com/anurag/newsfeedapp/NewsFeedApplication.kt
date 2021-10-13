@@ -1,8 +1,8 @@
 package com.anurag.newsfeedapp
 
 import android.app.Application
-import com.anurag.newsfeedapp.data.NewsFeedDatabase
+import com.anurag.newsfeedapp.data.db.NewsFeedDatabase
+import dagger.hilt.android.HiltAndroidApp
 
-class NewsFeedApplication : Application() {
-    val dataBase by lazy { NewsFeedDatabase.getDatabase(this) }
-}
+@HiltAndroidApp
+class NewsFeedApplication : Application()

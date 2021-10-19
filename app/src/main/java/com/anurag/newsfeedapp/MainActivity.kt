@@ -3,22 +3,19 @@ package com.anurag.newsfeedapp
 import android.net.Uri
 import android.os.Bundle
 import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.browser.customtabs.CustomTabsIntent
-import androidx.lifecycle.lifecycleScope
 import com.anurag.newsfeedapp.adapters.NewsListAdapter
-import com.anurag.newsfeedapp.data.NewsFeedRepository
 import com.anurag.newsfeedapp.databinding.ActivityMainBinding
+import com.anurag.newsfeedapp.viewmodels.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
+    private val viewModel: MainViewModel by viewModels()
     private lateinit var binding: ActivityMainBinding
     private lateinit var adapter: NewsListAdapter
-
-    @Inject
-    lateinit var repository: NewsFeedRepository
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,12 +32,15 @@ class MainActivity : AppCompatActivity() {
 
         binding.recyclerView.adapter = adapter
 
-        lifecycleScope.launchWhenCreated {
-            val newsResponse = repository.getNewsFeed()
+        viewModel.newsResponse.observe(this, { newsResponse ->
             adapter.updateNews(newsResponse.news)
+
             newsResponse.errorMessage?.let {
-                Toast.makeText(this@MainActivity, "Something went wrong - $it", Toast.LENGTH_LONG).show()
+                Toast.makeText(
+                    this@MainActivity,
+                    "Something went wrong", Toast.LENGTH_LONG
+                ).show()
             }
-        }
+        })
     }
 }

@@ -2,12 +2,7 @@ package com.anurag.newsfeedapp.ui
 
 import android.net.Uri
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.Menu
-import android.view.MenuInflater
-import android.view.MenuItem
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import androidx.browser.customtabs.CustomTabsIntent
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -65,15 +60,18 @@ class HomeFragment : Fragment() {
         inflater.inflate(R.menu.top_menu, menu)
     }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if (item.itemId == R.id.nav_setting_fragment) {
-            findNavController().navigate(R.id.nav_setting_fragment)
-            return true
-        } else if (item.itemId == R.id.nav_notification_fragment) {
-            findNavController().navigate(R.id.nav_notification_fragment)
-            return true
-        } else return false
-    }
+    override fun onOptionsItemSelected(item: MenuItem): Boolean =
+        when (item.itemId) {
+            R.id.nav_setting_fragment -> {
+                findNavController().navigate(R.id.nav_setting_fragment)
+                true
+            }
+            R.id.nav_notification_fragment -> {
+                findNavController().navigate(R.id.nav_notification_fragment)
+                true
+            }
+            else -> false
+        }
 
     override fun onDestroy() {
         super.onDestroy()

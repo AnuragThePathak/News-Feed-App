@@ -7,7 +7,7 @@ import androidx.lifecycle.viewModelScope
 import com.anurag.newsfeedapp.data.NewsFeedRepository
 import com.anurag.newsfeedapp.data.NewsResponse
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.Dispatchers.IO
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -22,7 +22,7 @@ class HomeViewModel @Inject constructor(private val repository: NewsFeedReposito
     }
 
     private fun getNews() {
-        viewModelScope.launch(IO) {
+        viewModelScope.launch(Dispatchers.IO) {
             _newsResponse.postValue(repository.getNewsFeed())
         }
     }

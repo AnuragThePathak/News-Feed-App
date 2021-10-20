@@ -14,13 +14,11 @@ class NewsListAdapter(private val listener: (String) -> Unit) :
 
     companion object {
         private val COMPARATOR = object : DiffUtil.ItemCallback<News>() {
-            override fun areContentsTheSame(oldItem: News, newItem: News): Boolean {
-                return oldItem == newItem
-            }
+            override fun areContentsTheSame(oldItem: News, newItem: News) =
+                oldItem == newItem
 
-            override fun areItemsTheSame(oldItem: News, newItem: News): Boolean {
-                return oldItem.uid == newItem.uid
-            }
+            override fun areItemsTheSame(oldItem: News, newItem: News) =
+                oldItem.uid == newItem.uid
         }
     }
 

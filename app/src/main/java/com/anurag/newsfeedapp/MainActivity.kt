@@ -1,46 +1,50 @@
 package com.anurag.newsfeedapp
 
-import android.net.Uri
 import android.os.Bundle
-import android.widget.Toast
-import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.browser.customtabs.CustomTabsIntent
-import com.anurag.newsfeedapp.adapters.NewsListAdapter
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.setupActionBarWithNavController
 import com.anurag.newsfeedapp.databinding.ActivityMainBinding
-import com.anurag.newsfeedapp.viewmodels.MainViewModel
+import com.anurag.newsfeedapp.utils.TimeEnum
 import dagger.hilt.android.AndroidEntryPoint
+import java.util.Calendar
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
-    private val viewModel: MainViewModel by viewModels()
     private lateinit var binding: ActivityMainBinding
-    private lateinit var adapter: NewsListAdapter
+    private lateinit var appBarConfiguration: AppBarConfiguration
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        val c = Calendar.getInstance()
+        val timeOfDay = c.get(Calendar.HOUR_OF_DAY)
+        val navController =
+            (supportFragmentManager.findFragmentById(R.id.nav_fragment_container) as NavHostFragment).findNavController()
 
-        supportActionBar?.title = "Latest News"
-
-        adapter = NewsListAdapter { url ->
-            val builder = CustomTabsIntent.Builder()
-            val customTabsIntent = builder.build()
-            customTabsIntent.launchUrl(this, Uri.parse(url))
-        }
-
-        binding.recyclerView.adapter = adapter
-
-        viewModel.newsResponse.observe(this, { newsResponse ->
-            adapter.updateNews(newsResponse.news)
-
-            newsResponse.errorMessage?.let {
-                Toast.makeText(
-                    this@MainActivity,
-                    "Something went wrong", Toast.LENGTH_LONG
-                ).show()
+        navController.addOnDestinationChangedListener { controller, destination, arguments ->
+            if (destination.id == R.id.nav_home_fragment) {
+                destination.label = when (timeOfDay) {
+                    in 0..11 -> {
+                        TimeEnum.MORNING.time
+                    }
+                    in 12..15 -> {
+                        TimeEnum.AFTER_NOON.time
+                    }
+                    else -> TimeEnum.EVENING.time
+                }
             }
-        })
+        }
+        appBarConfiguration = AppBarConfiguration(
+            setOf(
+                R.id.nav_home_fragment,
+                R.id.nav_notification_fragment,
+                R.id.nav_setting_fragment
+            )
+        )
+        setupActionBarWithNavController(navController, appBarConfiguration)
     }
 }

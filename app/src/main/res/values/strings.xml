@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">News Feed App</string>
     <string name="text">text</string>
+    <string name="setting">setting</string>
+    <string name="notification">Notification</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

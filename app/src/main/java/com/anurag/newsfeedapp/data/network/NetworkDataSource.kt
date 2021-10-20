@@ -20,16 +20,17 @@ class NetworkDataSource @Inject constructor(
 
     private suspend fun fetchNews(): List<News> = suspendCoroutine {
         val request = JsonObjectRequest(
-            Request.Method.GET,
-            URL,
-            null,
+            Request.Method.GET, URL, null,
+
             { response ->
                 val news = parseResponse(response)
                 it.resumeWith(Result.success(news))
-            }
-        ) { error ->
-            it.resumeWith(Result.failure(error))
-        }
+            },
+
+            { error ->
+                it.resumeWith(Result.failure(error))
+            })
+
         networkClient.addToRequestQueue(request)
     }
 
@@ -39,7 +40,8 @@ class NetworkDataSource @Inject constructor(
 
         for (i in 0 until jsonArray.length()) {
             val jsonObject = jsonArray.getJSONObject(i)
-            val publishedAt = jsonObject.getString("publishedAt")      //fetching publishedAt from the JSON file
+            val publishedAt =
+                jsonObject.getString("publishedAt")      //fetching publishedAt from the JSON file
 
             newsArray += News(
                 title = jsonObject.getString("title"),
@@ -51,6 +53,7 @@ class NetworkDataSource @Inject constructor(
                 time = finalTime(publishedAt)
             )
         }
+
         return newsArray
     }
 

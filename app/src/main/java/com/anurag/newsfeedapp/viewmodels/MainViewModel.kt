@@ -7,7 +7,9 @@ import androidx.lifecycle.viewModelScope
 import com.anurag.newsfeedapp.data.NewsFeedRepository
 import com.anurag.newsfeedapp.data.NewsResponse
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 @HiltViewModel
@@ -21,7 +23,9 @@ class MainViewModel @Inject constructor(
 
     init {
         viewModelScope.launch {
-            _newsResponse.value = repository.getNewsFeed()
+            _newsResponse.value = withContext(Dispatchers.IO) {
+                repository.getNewsFeed()
+            }
         }
     }
 

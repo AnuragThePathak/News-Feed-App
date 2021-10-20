@@ -18,14 +18,11 @@ class NewsFeedRepository @Inject constructor(
             val news = networkDataSource.getNewsFeed()
             diskDataSource.updateCache(news)
             NewsResponse(news = news)
-
         } catch (ex: Exception) {
-
             NewsResponse(
                 news = diskDataSource.getNews(),
                 errorMessage = ex.message
             )
-
         }
     }
 }

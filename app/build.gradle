@@ -78,6 +78,10 @@ dependencies {
 
     // Annotation processor for viewmodel
     implementation "androidx.lifecycle:lifecycle-common-java8:$rootProject.lifecycle_version"
+
+
+    // Preferences for Settings
+    implementation 'androidx.preference:preference-ktx:1.1.1'
 }
 
 kapt {

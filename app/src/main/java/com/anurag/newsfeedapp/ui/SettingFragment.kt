@@ -1,28 +1,12 @@
 package com.anurag.newsfeedapp.ui
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import androidx.fragment.app.Fragment
-import com.anurag.newsfeedapp.databinding.FragmentSettingBinding
+import androidx.preference.PreferenceFragmentCompat
+import com.anurag.newsfeedapp.R
 
-class SettingFragment : Fragment() {
-    private var _binding: FragmentSettingBinding? = null
-    private val binding get() = _binding!!
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        _binding = FragmentSettingBinding.inflate(layoutInflater, container, false)
-
-        return binding.root
+class SettingFragment : PreferenceFragmentCompat() {
+    override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
+        setPreferencesFromResource(R.xml.settings, rootKey);
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        _binding = null
-    }
 }

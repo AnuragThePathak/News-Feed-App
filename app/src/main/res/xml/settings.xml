@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <Preference
+        app:iconSpaceReserved="false"
+        android:key="version"
+        android:title="Version"
+        android:summary="1.0"
+        />
+
+    <Preference
+        app:iconSpaceReserved="false"
+        android:key="privacy"
+        android:title="Privacy Policy"
+        android:summary="Important for both of us."
+        />
+
+    <Preference
+        app:iconSpaceReserved="false"
+        android:key="terms"
+        android:title="Terms and Conditions"
+        android:summary="All the stuff you need to know."
+        />
+</PreferenceScreen>

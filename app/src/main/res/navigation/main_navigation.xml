@@ -20,7 +20,7 @@
     <fragment
         android:id="@+id/nav_setting_fragment"
         android:name="com.anurag.newsfeedapp.ui.SettingFragment"
-        android:label="Settings"
+        android:label="Setting"
         tools:layout="@layout/fragment_setting" />
     <fragment
         android:id="@+id/nav_notification_fragment"

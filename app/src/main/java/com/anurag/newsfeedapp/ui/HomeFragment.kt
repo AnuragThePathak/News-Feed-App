@@ -31,7 +31,7 @@ class HomeFragment : Fragment() {
                 type = "text/plain"
             }
 
-            val shareIntent = Intent.createChooser(sendIntent, getString(R.string.share))
+            val shareIntent = Intent.createChooser(sendIntent, null)
             startActivity(shareIntent)
         })
     }

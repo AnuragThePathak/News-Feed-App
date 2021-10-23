@@ -11,12 +11,10 @@ import com.anurag.newsfeedapp.R
 
 class SettingFragment : PreferenceFragmentCompat() {
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
-        setPreferencesFromResource(R.xml.settings, rootKey);
+        setPreferencesFromResource(R.xml.settings, rootKey)
 
         val version = findPreference<Preference>("version")
-        if (version != null) {
-            version.summary = BuildConfig.VERSION_NAME
-        }
+        version?.summary = BuildConfig.VERSION_NAME
     }
 
     override fun onCreateView(
@@ -25,8 +23,7 @@ class SettingFragment : PreferenceFragmentCompat() {
         savedInstanceState: Bundle?
     ): View? {
         val view = super.onCreateView(inflater, container, savedInstanceState)
-        view?.setBackgroundColor((resources.getColor(R.color.dark_grey)))
+        view?.setBackgroundColor((resources.getColor(R.color.dark_grey, null)))
         return view
     }
-
 }

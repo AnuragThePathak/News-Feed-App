@@ -9,8 +9,10 @@ import com.anurag.newsfeedapp.data.News
 import com.anurag.newsfeedapp.databinding.RowItemBinding
 import com.bumptech.glide.Glide
 
-class NewsListAdapter(private val listener: (String) -> Unit) :
-    ListAdapter<News, NewsListAdapter.ViewHolder>(COMPARATOR) {
+class NewsListAdapter(
+    private val listener: (String) -> Unit,
+    private val shareListener: (String) -> Unit
+) : ListAdapter<News, NewsListAdapter.ViewHolder>(COMPARATOR) {
 
     companion object {
         private val COMPARATOR = object : DiffUtil.ItemCallback<News>() {
@@ -31,6 +33,9 @@ class NewsListAdapter(private val listener: (String) -> Unit) :
             timeView.text = news.time
             Glide.with(imageView.context).load(news.imageUrl)
                 .centerCrop().into(imageView)
+            shareBtn.setOnClickListener {
+                shareListener.invoke(news.url)
+            }
             this.root.setOnClickListener {
                 listener.invoke(news.url)
             }

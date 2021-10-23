@@ -1,5 +1,6 @@
 package com.anurag.newsfeedapp.ui
 
+import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.view.*
@@ -21,9 +22,18 @@ class HomeFragment : Fragment() {
     private val viewModel: HomeViewModel by viewModels()
     private val customIntent by lazy { CustomTabsIntent.Builder().build() }
     private val mAdapter: NewsListAdapter by lazy {
-        NewsListAdapter {
+        NewsListAdapter({
             customIntent.launchUrl(requireContext(), Uri.parse(it))
-        }
+        }, { newsUrl ->
+            val sendIntent: Intent = Intent().apply {
+                action = Intent.ACTION_SEND
+                putExtra(Intent.EXTRA_TEXT, newsUrl)
+                type = "text/plain"
+            }
+
+            val shareIntent = Intent.createChooser(sendIntent, getString(R.string.share))
+            startActivity(shareIntent)
+        })
     }
 
     override fun onCreateView(

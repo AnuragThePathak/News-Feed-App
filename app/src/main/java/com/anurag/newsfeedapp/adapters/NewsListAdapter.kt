@@ -9,7 +9,7 @@ import com.anurag.newsfeedapp.data.News
 import com.anurag.newsfeedapp.databinding.RowItemBinding
 import com.bumptech.glide.Glide
 
-class NewsListAdapter(private val listener: (String) -> Unit) :
+class NewsListAdapter(private val newsItemCallback: NewsItemCallback) :
     ListAdapter<News, NewsListAdapter.ViewHolder>(COMPARATOR) {
 
     companion object {
@@ -31,8 +31,11 @@ class NewsListAdapter(private val listener: (String) -> Unit) :
             timeView.text = news.time
             Glide.with(imageView.context).load(news.imageUrl)
                 .centerCrop().into(imageView)
+            shareBtn.setOnClickListener {
+                newsItemCallback.onShareNewsClicked(news.url)
+            }
             this.root.setOnClickListener {
-                listener.invoke(news.url)
+                newsItemCallback.onNewsItemClicked(news)
             }
         }
     }
@@ -49,5 +52,11 @@ class NewsListAdapter(private val listener: (String) -> Unit) :
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(getItem(position))
+    }
+
+    interface NewsItemCallback {
+        fun onNewsItemClicked(news: News)
+
+        fun onShareNewsClicked(url: String)
     }
 }

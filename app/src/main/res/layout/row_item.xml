@@ -11,6 +11,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraint_lay"
         android:background="@drawable/news_item_bg"
+        android:padding="5dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -18,7 +19,7 @@
             android:id="@+id/image_view"
             android:layout_width="match_parent"
             android:layout_height="180dp"
-            android:layout_margin="5dp"
+            android:layout_marginBottom="5dp"
             app:layout_constraintBottom_toTopOf="@+id/title_view"
             app:layout_constraintTop_toTopOf="parent" />
 

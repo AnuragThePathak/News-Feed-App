@@ -6,7 +6,6 @@
         app:iconSpaceReserved="false"
         android:key="version"
         android:title="Version"
-        android:summary="1.0"
         />
 
     <Preference

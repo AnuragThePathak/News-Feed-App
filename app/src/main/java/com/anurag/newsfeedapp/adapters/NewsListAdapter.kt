@@ -9,8 +9,10 @@ import com.anurag.newsfeedapp.data.News
 import com.anurag.newsfeedapp.databinding.RowItemBinding
 import com.bumptech.glide.Glide
 
-class NewsListAdapter(private val newsItemCallback: NewsItemCallback) :
-    ListAdapter<News, NewsListAdapter.ViewHolder>(COMPARATOR) {
+class NewsListAdapter(
+    private val listener: (String) -> Unit,
+    private val shareListener: (String) -> Unit
+) : ListAdapter<News, NewsListAdapter.ViewHolder>(COMPARATOR) {
 
     companion object {
         private val COMPARATOR = object : DiffUtil.ItemCallback<News>() {
@@ -32,10 +34,10 @@ class NewsListAdapter(private val newsItemCallback: NewsItemCallback) :
             Glide.with(imageView.context).load(news.imageUrl)
                 .centerCrop().into(imageView)
             shareBtn.setOnClickListener {
-                newsItemCallback.onShareNewsClicked(news.url)
+                shareListener.invoke(news.url)
             }
             this.root.setOnClickListener {
-                newsItemCallback.onNewsItemClicked(news)
+                listener.invoke(news.url)
             }
         }
     }
@@ -52,11 +54,5 @@ class NewsListAdapter(private val newsItemCallback: NewsItemCallback) :
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(getItem(position))
-    }
-
-    interface NewsItemCallback {
-        fun onNewsItemClicked(news: News)
-
-        fun onShareNewsClicked(url: String)
     }
 }

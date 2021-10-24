@@ -26,6 +26,7 @@ class NewsListAdapter(
 
     inner class ViewHolder(private val binding: RowItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
+
         fun bind(news: News) = binding.apply {
             titleView.text = news.title
             descriptionView.text = news.description
@@ -33,7 +34,8 @@ class NewsListAdapter(
             timeView.text = news.time
             Glide.with(imageView.context).load(news.imageUrl)
                 .centerCrop().into(imageView)
-            shareBtn.setOnClickListener {
+
+            shareButton.setOnClickListener {
                 shareListener.invoke(news.url)
             }
             this.root.setOnClickListener {

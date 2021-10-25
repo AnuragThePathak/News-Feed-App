@@ -1,7 +1,7 @@
 # News Feed App
 
 This android app fetches **News from an API**.
-- Gradle version : 7.0.2
+- Gradle version : 7.0.3
 - Compile SDK version : 30
 
 ## Built With 🛠
@@ -10,6 +10,7 @@ This android app fetches **News from an API**.
 - [Volley Library](https://developer.android.com/training/volley)
 - [Glide Library](https://github.com/bumptech/glide)
 - [Room](https://developer.android.com/training/data-storage/room)
+- [Hilt](https://developer.android.com/training/dependency-injection/hilt-android)
 
 
 ## API used

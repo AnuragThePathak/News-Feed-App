@@ -5,4 +5,7 @@
     <string name="notification">Notification</string>
     <string name="share">Share</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="text_label_home">Home</string>
+    <string name="text_label_explore">Explore</string>
+    <string name="text_label_library">Library</string>
 </resources>

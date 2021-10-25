@@ -1,0 +1,19 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/nav_home_fragment"
+        android:enabled="true"
+        android:icon="@drawable/ic_baseline_home_24"
+        android:title="@string/text_label_home" />
+
+    <item
+        android:id="@+id/nav_explore_fragment"
+        android:enabled="true"
+        android:icon="@drawable/ic_baseline_explore_24"
+        android:title="@string/text_label_explore" />
+
+    <item
+        android:id="@+id/nav_library_fragment"
+        android:enabled="true"
+        android:icon="@drawable/ic_baseline_local_library_24"
+        android:title="@string/text_label_library" />
+</menu>

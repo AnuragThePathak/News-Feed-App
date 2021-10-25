@@ -14,7 +14,7 @@
         <!-- Customize your theme here. -->
 
         <item name="android:textColor">#fff</item>
-        <item name="android:textColorSecondary">#AFADAA</item>
+        <item name="android:textColorSecondary">@color/secondary_textcolor</item>
 
     </style>
 </resources>

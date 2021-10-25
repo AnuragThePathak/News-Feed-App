@@ -29,4 +29,14 @@
         android:name="com.anurag.newsfeedapp.ui.NotificationFragment"
         android:label="Notifications"
         tools:layout="@layout/fragment_notification" />
+
+    <fragment
+        android:id="@+id/nav_explore_fragment"
+        android:name="com.anurag.newsfeedapp.ui.ExploreFragment"
+        android:label="@string/text_label_explore" />
+
+    <fragment
+        android:id="@+id/nav_library_fragment"
+        android:name="com.anurag.newsfeedapp.ui.LibraryFragment"
+        android:label="@string/text_label_library" />
 </navigation>

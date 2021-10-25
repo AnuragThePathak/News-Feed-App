@@ -6,6 +6,7 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
+import androidx.navigation.ui.setupWithNavController
 import com.anurag.newsfeedapp.databinding.ActivityMainBinding
 import com.anurag.newsfeedapp.utils.TimeEnum
 import dagger.hilt.android.AndroidEntryPoint
@@ -46,5 +47,6 @@ class MainActivity : AppCompatActivity() {
             )
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
+        binding.bottomNavigation.setupWithNavController(navController)
     }
 }

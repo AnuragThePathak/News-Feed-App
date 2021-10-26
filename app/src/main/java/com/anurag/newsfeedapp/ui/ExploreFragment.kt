@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.anurag.newsfeedapp.R
@@ -17,8 +16,8 @@ class ExploreFragment : Fragment() {
 
     private val mAdapter: CategoryListAdapter by lazy {
         CategoryListAdapter{
-            val bundle = bundleOf("category" to it)
-            findNavController().navigate(R.id.action_nav_explore_fragment_to_nav_category_news_fragment, bundle)
+            val directions = ExploreFragmentDirections.actionNavExploreFragmentToNavCategoryNewsFragment(it)
+            findNavController().navigate(directions)
         }
     }
 

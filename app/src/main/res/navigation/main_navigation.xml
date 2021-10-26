@@ -51,7 +51,6 @@
         >
         <argument
             android:name="category"
-            app:argType="string"
-            app:nullable="true" />
+            app:argType="string" />
     </fragment>
 </navigation>

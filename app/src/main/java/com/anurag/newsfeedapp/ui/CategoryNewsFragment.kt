@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import androidx.browser.customtabs.CustomTabsIntent
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.navArgs
 import com.anurag.newsfeedapp.adapters.NewsListAdapter
 import com.anurag.newsfeedapp.databinding.FragmentCategoryNewsBinding
 import com.anurag.newsfeedapp.viewmodels.CategoryViewModel
@@ -19,7 +20,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class CategoryNewsFragment : Fragment() {
     private var _binding: FragmentCategoryNewsBinding? = null
     private val binding get() = _binding!!
-    private var category: String? = null
+    private val args: CategoryNewsFragmentArgs by navArgs()
     private val viewModel: CategoryViewModel by viewModels()
     private val customIntent by lazy { CustomTabsIntent.Builder().build() }
     private val mAdapter: NewsListAdapter by lazy {
@@ -37,13 +38,6 @@ class CategoryNewsFragment : Fragment() {
         })
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            category = it.getString("category")
-        }
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -57,7 +51,7 @@ class CategoryNewsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         initRecyclerView()
         observeNews()
-        viewModel.getNewsForCategory(category)
+        viewModel.getNewsForCategory(args.category)
     }
 
     private fun initRecyclerView() = binding.recyclerView.apply {

@@ -4,12 +4,23 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
+import com.anurag.newsfeedapp.R
+import com.anurag.newsfeedapp.adapters.CategoryListAdapter
 import com.anurag.newsfeedapp.databinding.FragmentExploreBinding
 
 class ExploreFragment : Fragment() {
     private var _binding: FragmentExploreBinding? = null
     private val binding get() = _binding!!
+
+    private val mAdapter: CategoryListAdapter by lazy {
+        CategoryListAdapter{
+            val bundle = bundleOf("category" to it)
+            findNavController().navigate(R.id.action_nav_explore_fragment_to_nav_category_news_fragment, bundle)
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -19,6 +30,21 @@ class ExploreFragment : Fragment() {
         _binding = FragmentExploreBinding.inflate(layoutInflater, container, false)
 
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        initRecyclerView()
+        setCategories()
+    }
+
+    private fun initRecyclerView() = binding.recyclerView.apply {
+        adapter = mAdapter
+    }
+
+    private fun setCategories() {
+        val categories = resources.getStringArray(R.array.categories)
+        mAdapter.submitList(categories.toList())
     }
 
     override fun onDestroy() {

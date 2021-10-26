@@ -25,4 +25,17 @@ class NewsFeedRepository @Inject constructor(
             )
         }
     }
+
+    @WorkerThread
+    suspend fun getNewsForCategory(category: String?): NewsResponse {
+        return try {
+            val news = networkDataSource.getNewsForCategory(category)
+            NewsResponse(news = news)
+        } catch (ex: Exception) {
+            NewsResponse(
+                news = emptyList(),
+                errorMessage = ex.message
+            )
+        }
+    }
 }

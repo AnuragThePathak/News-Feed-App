@@ -16,9 +16,11 @@ class ExploreFragment : Fragment() {
 
     private val mAdapter: CategoryAdapter by lazy {
         val categories = resources.getStringArray(R.array.categories)
+
         CategoryAdapter(categories.toList()) {
-            val directions =
-                ExploreFragmentDirections.actionNavExploreFragmentToNavCategoryNewsFragment(it)
+            val directions = ExploreFragmentDirections
+                .actionNavExploreFragmentToNavCategoryNewsFragment(it)
+
             findNavController().navigate(directions)
         }
     }

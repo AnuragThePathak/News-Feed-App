@@ -2,7 +2,7 @@
 
 This android app fetches **News from an API**.
 - Gradle version : 7.0.3
-- Compile SDK version : 30
+- Compile SDK version : 31
 
 ## Built With 🛠
 - [Kotlin](https://kotlinlang.org/)

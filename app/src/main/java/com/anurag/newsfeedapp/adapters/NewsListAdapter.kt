@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.anurag.newsfeedapp.data.News
-import com.anurag.newsfeedapp.databinding.RowItemBinding
+import com.anurag.newsfeedapp.databinding.NewsItemBinding
 import com.bumptech.glide.Glide
 
 class NewsListAdapter(
@@ -24,7 +24,7 @@ class NewsListAdapter(
         }
     }
 
-    inner class ViewHolder(private val binding: RowItemBinding) :
+    inner class ViewHolder(private val binding: NewsItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(news: News) = binding.apply {
@@ -46,7 +46,7 @@ class NewsListAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(
-            RowItemBinding.inflate(
+            NewsItemBinding.inflate(
                 LayoutInflater.from(parent.context),
                 parent,
                 false

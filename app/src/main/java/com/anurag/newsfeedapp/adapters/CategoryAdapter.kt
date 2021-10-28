@@ -2,24 +2,13 @@ package com.anurag.newsfeedapp.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.anurag.newsfeedapp.databinding.CategoryItemBinding
 
-class CategoryListAdapter(
+class CategoryAdapter(
+    private val categories: List<String>,
     private val listener: (String) -> Unit,
-) : ListAdapter<String, CategoryListAdapter.ViewHolder>(COMPARATOR) {
-
-    companion object {
-        private val COMPARATOR = object : DiffUtil.ItemCallback<String>() {
-            override fun areContentsTheSame(oldItem: String, newItem: String) =
-                oldItem == newItem
-
-            override fun areItemsTheSame(oldItem: String, newItem: String) =
-                oldItem == newItem
-        }
-    }
+) : RecyclerView.Adapter<CategoryAdapter.ViewHolder>() {
 
     inner class ViewHolder(private val binding: CategoryItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
@@ -43,6 +32,9 @@ class CategoryListAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(getItem(position))
+        if (position == RecyclerView.NO_POSITION) return
+        holder.bind(categories[position])
     }
+
+    override fun getItemCount() = categories.size
 }

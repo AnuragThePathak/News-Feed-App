@@ -13,29 +13,23 @@ class NewsFeedRepository @Inject constructor(
 ) {
 
     @WorkerThread
-    suspend fun getNewsFeed(): NewsResponse {
+    suspend fun getNewsFeed(category: String): NewsResponse {
+        val categoryId = category.lowercase()
         return try {
-            val news = networkDataSource.getNewsFeed()
-            diskDataSource.updateCache(news)
+            val news = networkDataSource.getNewsFeed(categoryId)
+            if (categoryId == DEFAULT_CATEGORY) {
+                diskDataSource.updateCache(news)
+            }
             NewsResponse(news = news)
         } catch (ex: Exception) {
             NewsResponse(
-                news = diskDataSource.getNews(),
+                news = if (categoryId == DEFAULT_CATEGORY) diskDataSource.getNews() else emptyList(),
                 errorMessage = ex.message
             )
         }
     }
 
-    @WorkerThread
-    suspend fun getNewsForCategory(category: String?): NewsResponse {
-        return try {
-            val news = networkDataSource.getNewsForCategory(category)
-            NewsResponse(news = news)
-        } catch (ex: Exception) {
-            NewsResponse(
-                news = emptyList(),
-                errorMessage = ex.message
-            )
-        }
+    companion object {
+        const val DEFAULT_CATEGORY = "general"
     }
 }

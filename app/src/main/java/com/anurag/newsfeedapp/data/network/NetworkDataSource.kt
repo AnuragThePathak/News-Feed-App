@@ -14,17 +14,12 @@ class NetworkDataSource @Inject constructor(
     private val networkClient: NetworkClient
 ) {
 
-    suspend fun getNewsFeed(): List<News> {
-        return fetchNews(null)
-    }
-
-    suspend fun getNewsForCategory(category: String?): List<News> {
+    suspend fun getNewsFeed(category: String): List<News> {
         return fetchNews(category)
     }
 
-    private suspend fun fetchNews(category: String?): List<News> = suspendCoroutine {
-        val categoryId = category ?: "general"
-        val url = "$CATEGORY_END_POINT/${categoryId.lowercase()}/in.json"
+    private suspend fun fetchNews(category: String): List<News> = suspendCoroutine {
+        val url = "$CATEGORY_END_POINT/${category.lowercase()}/in.json"
         val request = JsonObjectRequest(
             Request.Method.GET, url, null,
 
@@ -65,7 +60,6 @@ class NetworkDataSource @Inject constructor(
 
     companion object {
         const val CATEGORY_END_POINT = "https://saurav.tech/NewsAPI/top-headlines/category"
-        const val URL = "https://saurav.tech/NewsAPI/top-headlines/category/general/in.json"
     }
 
 }

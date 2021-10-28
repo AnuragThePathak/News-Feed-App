@@ -10,18 +10,16 @@ import android.view.ViewGroup
 import androidx.browser.customtabs.CustomTabsIntent
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.fragment.navArgs
 import com.anurag.newsfeedapp.adapters.NewsListAdapter
-import com.anurag.newsfeedapp.databinding.FragmentCategoryNewsBinding
-import com.anurag.newsfeedapp.viewmodels.CategoryViewModel
+import com.anurag.newsfeedapp.databinding.FragmentHomeBinding
+import com.anurag.newsfeedapp.viewmodels.HomeViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class CategoryNewsFragment : Fragment() {
-    private var _binding: FragmentCategoryNewsBinding? = null
+    private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
-    private val args: CategoryNewsFragmentArgs by navArgs()
-    private val viewModel: CategoryViewModel by viewModels()
+    private val viewModel: HomeViewModel by viewModels()
     private val customIntent by lazy { CustomTabsIntent.Builder().build() }
     private val mAdapter: NewsListAdapter by lazy {
         NewsListAdapter({
@@ -43,7 +41,7 @@ class CategoryNewsFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentCategoryNewsBinding.inflate(layoutInflater, container, false)
+        _binding = FragmentHomeBinding.inflate(layoutInflater, container, false)
         return binding.root
     }
 
@@ -51,7 +49,6 @@ class CategoryNewsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         initRecyclerView()
         observeNews()
-        viewModel.getNewsForCategory(args.category)
     }
 
     private fun initRecyclerView() = binding.recyclerView.apply {

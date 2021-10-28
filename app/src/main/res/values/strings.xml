@@ -8,4 +8,13 @@
     <string name="text_label_home">Home</string>
     <string name="text_label_explore">Explore</string>
     <string name="text_label_library">Library</string>
+
+    <string-array name="categories">
+        <item>Business</item>
+        <item>Entertainment</item>
+        <item>Health</item>
+        <item>Science</item>
+        <item>Sports</item>
+        <item>Technology</item>
+    </string-array>
 </resources>

@@ -42,6 +42,9 @@ class MainActivity : AppCompatActivity() {
         appBarConfiguration = AppBarConfiguration(
             setOf(
                 R.id.nav_home_fragment,
+                R.id.nav_explore_fragment,
+                R.id.nav_library_fragment,
+                R.id.nav_category_news_fragment,
                 R.id.nav_notification_fragment,
                 R.id.nav_setting_fragment
             )

@@ -19,7 +19,7 @@ class NetworkDataSource @Inject constructor(
     }
 
     private suspend fun fetchNews(category: String): List<News> = suspendCoroutine {
-        val url = "$CATEGORY_END_POINT/${category.lowercase()}/in.json"
+        val url = "$CATEGORY_END_POINT/${category}/in.json"
         val request = JsonObjectRequest(
             Request.Method.GET, url, null,
 

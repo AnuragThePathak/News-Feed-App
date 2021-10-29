@@ -12,14 +12,14 @@ import androidx.navigation.fragment.findNavController
 import com.anurag.newsfeedapp.R
 import com.anurag.newsfeedapp.adapters.NewsListAdapter
 import com.anurag.newsfeedapp.databinding.FragmentHomeBinding
-import com.anurag.newsfeedapp.viewmodels.HomeViewModel
+import com.anurag.newsfeedapp.viewmodels.NewsListViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
-    private val viewModel: HomeViewModel by viewModels()
+    private val viewModel: NewsListViewModel by viewModels()
     private val customIntent by lazy { CustomTabsIntent.Builder().build() }
     private val mAdapter: NewsListAdapter by lazy {
         NewsListAdapter({

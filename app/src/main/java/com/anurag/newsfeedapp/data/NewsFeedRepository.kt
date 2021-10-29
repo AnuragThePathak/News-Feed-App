@@ -15,15 +15,18 @@ class NewsFeedRepository @Inject constructor(
     @WorkerThread
     suspend fun getNewsFeed(category: String): NewsResponse {
         val categoryId = category.lowercase()
+
         return try {
             val news = networkDataSource.getNewsFeed(categoryId)
-            if (categoryId == DEFAULT_CATEGORY) {
-                diskDataSource.updateCache(news)
-            }
+            if (categoryId == DEFAULT_CATEGORY) diskDataSource.updateCache(news)
+
             NewsResponse(news = news)
         } catch (ex: Exception) {
             NewsResponse(
-                news = if (categoryId == DEFAULT_CATEGORY) diskDataSource.getNews() else emptyList(),
+                news = when (categoryId) {
+                    DEFAULT_CATEGORY -> diskDataSource.getNews()
+                    else -> emptyList()
+                },
                 errorMessage = ex.message
             )
         }

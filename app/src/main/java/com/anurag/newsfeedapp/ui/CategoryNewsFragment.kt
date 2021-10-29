@@ -3,23 +3,23 @@ package com.anurag.newsfeedapp.ui
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.browser.customtabs.CustomTabsIntent
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.anurag.newsfeedapp.adapters.NewsListAdapter
 import com.anurag.newsfeedapp.databinding.FragmentHomeBinding
-import com.anurag.newsfeedapp.viewmodels.HomeViewModel
+import com.anurag.newsfeedapp.viewmodels.NewsListViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class CategoryNewsFragment : Fragment() {
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
-    private val viewModel: HomeViewModel by viewModels()
+    private val viewModel: NewsListViewModel by viewModels()
     private val customIntent by lazy { CustomTabsIntent.Builder().build() }
     private val mAdapter: NewsListAdapter by lazy {
         NewsListAdapter({

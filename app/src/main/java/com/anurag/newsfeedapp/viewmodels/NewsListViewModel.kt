@@ -9,11 +9,12 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class HomeViewModel @Inject constructor(
+class NewsListViewModel @Inject constructor(
     private val repository: NewsFeedRepository,
-    savedStateHandle: SavedStateHandle,
+    savedStateHandle: SavedStateHandle
 ) : ViewModel() {
     private val category = savedStateHandle.getLiveData<String>("category")
+
     private val _newsResponse = MutableLiveData<NewsResponse>()
     val newsResponse: LiveData<NewsResponse>
         get() = _newsResponse

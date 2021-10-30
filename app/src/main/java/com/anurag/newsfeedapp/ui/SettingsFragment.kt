@@ -9,7 +9,7 @@ import androidx.preference.PreferenceFragmentCompat
 import com.anurag.newsfeedapp.BuildConfig
 import com.anurag.newsfeedapp.R
 
-class SettingFragment : PreferenceFragmentCompat() {
+class SettingsFragment : PreferenceFragmentCompat() {
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         setPreferencesFromResource(R.xml.settings, rootKey)
 

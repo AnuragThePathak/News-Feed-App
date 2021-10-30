@@ -14,28 +14,28 @@
             android:id="@+id/action_homeFragment_to_notificationFragment"
             app:destination="@id/nav_notification_fragment" />
         <action
-            android:id="@+id/action_homeFragment_to_settingFragment"
+            android:id="@+id/action_homeFragment_to_settingsFragment"
             app:destination="@id/nav_setting_fragment" />
     </fragment>
 
     <fragment
         android:id="@+id/nav_setting_fragment"
-        android:name="com.anurag.newsfeedapp.ui.SettingFragment"
+        android:name="com.anurag.newsfeedapp.ui.SettingsFragment"
         android:label="Settings"
-        tools:layout="@layout/fragment_setting" />
+        tools:layout="@layout/fragment_settings" />
 
     <fragment
         android:id="@+id/nav_notification_fragment"
-        android:name="com.anurag.newsfeedapp.ui.NotificationFragment"
+        android:name="com.anurag.newsfeedapp.ui.NotificationsFragment"
         android:label="Notifications"
-        tools:layout="@layout/fragment_notification" />
+        tools:layout="@layout/fragment_notifications" />
 
     <fragment
         android:id="@+id/nav_explore_fragment"
         android:name="com.anurag.newsfeedapp.ui.ExploreFragment"
         android:label="@string/text_label_explore" >
         <action
-            android:id="@+id/action_nav_explore_fragment_to_nav_category_news_fragment"
+            android:id="@+id/action_explore_fragment_to_category_news_fragment"
             app:destination="@id/nav_category_news_fragment" />
     </fragment>
 

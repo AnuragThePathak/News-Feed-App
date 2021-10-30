@@ -5,10 +5,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.anurag.newsfeedapp.databinding.FragmentNotificationBinding
+import com.anurag.newsfeedapp.databinding.FragmentNotificationsBinding
 
-class NotificationFragment : Fragment() {
-    private var _binding: FragmentNotificationBinding? = null
+class NotificationsFragment : Fragment() {
+    private var _binding: FragmentNotificationsBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -16,7 +16,7 @@ class NotificationFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentNotificationBinding.inflate(layoutInflater, container, false)
+        _binding = FragmentNotificationsBinding.inflate(layoutInflater, container, false)
 
         return binding.root
     }

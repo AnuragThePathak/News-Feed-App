@@ -13,6 +13,7 @@ class NewsListViewModel @Inject constructor(
     private val repository: NewsFeedRepository,
     savedStateHandle: SavedStateHandle
 ) : ViewModel() {
+
     private val category = savedStateHandle.getLiveData<String>("category")
 
     private val _newsResponse = MutableLiveData<NewsResponse>()

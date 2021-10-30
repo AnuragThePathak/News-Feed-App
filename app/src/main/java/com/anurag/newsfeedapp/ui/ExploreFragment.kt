@@ -19,7 +19,7 @@ class ExploreFragment : Fragment() {
 
         CategoryAdapter(categories.toList()) {
             val directions = ExploreFragmentDirections
-                .actionNavExploreFragmentToNavCategoryNewsFragment(it)
+                .actionExploreFragmentToCategoryNewsFragment(it)
 
             findNavController().navigate(directions)
         }

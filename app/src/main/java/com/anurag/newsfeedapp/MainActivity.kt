@@ -10,10 +10,11 @@ import androidx.navigation.ui.setupWithNavController
 import com.anurag.newsfeedapp.databinding.ActivityMainBinding
 import com.anurag.newsfeedapp.utils.TimeEnum
 import dagger.hilt.android.AndroidEntryPoint
-import java.util.Calendar
+import java.util.*
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
+
     private lateinit var binding: ActivityMainBinding
     private lateinit var appBarConfiguration: AppBarConfiguration
 

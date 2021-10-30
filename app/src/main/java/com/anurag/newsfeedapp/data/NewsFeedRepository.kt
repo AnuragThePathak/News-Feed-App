@@ -14,7 +14,6 @@ class NewsFeedRepository @Inject constructor(
 
     @WorkerThread
     suspend fun getNewsFeed(category: String): NewsResponse {
-
         val categoryId = category.lowercase()
 
         return try {

@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import com.anurag.newsfeedapp.databinding.FragmentNotificationsBinding
 
 class NotificationsFragment : Fragment() {
+
     private var _binding: FragmentNotificationsBinding? = null
     private val binding get() = _binding!!
 

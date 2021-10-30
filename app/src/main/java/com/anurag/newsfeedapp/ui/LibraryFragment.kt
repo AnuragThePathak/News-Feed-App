@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import com.anurag.newsfeedapp.databinding.FragmentLibraryBinding
 
 class LibraryFragment : Fragment() {
+
     private var _binding: FragmentLibraryBinding? = null
     private val binding get() = _binding!!
 

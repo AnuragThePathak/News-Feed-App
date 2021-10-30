@@ -11,6 +11,7 @@ import com.anurag.newsfeedapp.adapters.CategoryAdapter
 import com.anurag.newsfeedapp.databinding.FragmentExploreBinding
 
 class ExploreFragment : Fragment() {
+
     private var _binding: FragmentExploreBinding? = null
     private val binding get() = _binding!!
 

@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.findNavController
 import com.anurag.newsfeedapp.R
 import com.anurag.newsfeedapp.adapters.CategoryAdapter
 import com.anurag.newsfeedapp.databinding.FragmentExploreBinding
@@ -18,12 +17,7 @@ class ExploreFragment : Fragment() {
     private val mAdapter: CategoryAdapter by lazy {
         val categories = resources.getStringArray(R.array.categories)
 
-        CategoryAdapter(categories.toList()) {
-            val directions = ExploreFragmentDirections
-                .actionExploreFragmentToCategoryNewsFragment(it)
-
-            findNavController().navigate(directions)
-        }
+        CategoryAdapter(categories.toList())
     }
 
     override fun onCreateView(

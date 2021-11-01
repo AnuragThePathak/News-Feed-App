@@ -10,9 +10,11 @@
         android:name="com.anurag.newsfeedapp.ui.HomeFragment"
         android:label="Home"
         tools:layout="@layout/fragment_home" >
+
         <action
             android:id="@+id/action_homeFragment_to_notificationFragment"
             app:destination="@id/nav_notification_fragment" />
+
         <action
             android:id="@+id/action_homeFragment_to_settingsFragment"
             app:destination="@id/nav_setting_fragment" />
@@ -34,7 +36,8 @@
         android:id="@+id/nav_explore_fragment"
         android:name="com.anurag.newsfeedapp.ui.ExploreFragment"
         android:label="@string/text_label_explore" >
-        <action
+
+    <action
             android:id="@+id/action_explore_fragment_to_category_news_fragment"
             app:destination="@id/nav_category_news_fragment" />
     </fragment>
@@ -47,8 +50,7 @@
     <fragment
         android:id="@+id/nav_category_news_fragment"
         android:name="com.anurag.newsfeedapp.ui.CategoryNewsFragment"
-        android:label="{category}"
-        >
+        android:label="{category}">
         <argument
             android:name="category"
             app:argType="string" />

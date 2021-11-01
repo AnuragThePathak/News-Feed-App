@@ -1,7 +1,8 @@
-package com.anurag.newsfeedapp.data.db
+package com.anurag.newsfeedapp.di
 
 import android.content.Context
-import androidx.room.Room
+import com.anurag.newsfeedapp.data.db.NewsFeedDao
+import com.anurag.newsfeedapp.data.db.NewsFeedDatabase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -14,11 +15,7 @@ object DatabaseModule {
 
     @Provides
     fun provideDatabase(@ApplicationContext context: Context): NewsFeedDatabase {
-        return Room.databaseBuilder(
-            context.applicationContext,
-            NewsFeedDatabase::class.java,
-            "news_list"
-        ).fallbackToDestructiveMigration().build()
+        return NewsFeedDatabase.getDatabase(context)
     }
 
     @Provides

@@ -1,23 +1,35 @@
 package com.anurag.newsfeedapp.adapters
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.anurag.newsfeedapp.databinding.CategoryItemBinding
+import com.anurag.newsfeedapp.ui.ExploreFragmentDirections
 
 class CategoryAdapter(
     private val categories: List<String>,
-    private val listener: (String) -> Unit,
 ) : RecyclerView.Adapter<CategoryAdapter.ViewHolder>() {
 
     inner class ViewHolder(private val binding: CategoryItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
+        init {
+            itemView.setOnClickListener {
+                navigateToCategoryNews(categories[adapterPosition], it)
+            }
+        }
+
+        private fun navigateToCategoryNews(category: String, view: View) {
+            val action = ExploreFragmentDirections
+                .actionExploreFragmentToCategoryNewsFragment(category)
+
+            view.findNavController().navigate(action)
+        }
+
         fun bind(category: String) = binding.apply {
             categoryText.text = category
-            categoryCard.setOnClickListener {
-                listener.invoke(category)
-            }
         }
     }
 

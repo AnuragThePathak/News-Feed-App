@@ -14,7 +14,8 @@ class NewsListViewModel @Inject constructor(
     savedStateHandle: SavedStateHandle
 ) : ViewModel() {
 
-    private val category = savedStateHandle.getLiveData<String>("category")
+//    The key must be same as argument name defined in main_navigation.xml
+private val category = savedStateHandle.getLiveData<String>("category")
 
     private val _newsResponse = MutableLiveData<NewsResponse>()
     val newsResponse: LiveData<NewsResponse>

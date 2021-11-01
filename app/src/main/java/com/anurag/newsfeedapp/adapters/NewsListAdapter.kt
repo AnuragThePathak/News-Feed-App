@@ -16,6 +16,9 @@ import com.bumptech.glide.Glide
 
 class NewsListAdapter : ListAdapter<News, NewsListAdapter.ViewHolder>(COMPARATOR) {
 
+
+    private val customTabsIntent by lazy { CustomTabsIntent.Builder().build() }
+
     companion object {
         private val COMPARATOR = object : DiffUtil.ItemCallback<News>() {
             override fun areContentsTheSame(oldItem: News, newItem: News) =
@@ -31,19 +34,21 @@ class NewsListAdapter : ListAdapter<News, NewsListAdapter.ViewHolder>(COMPARATOR
 
         init {
             itemView.setOnClickListener {
-                CustomTabsIntent.Builder().build()
-                    .launchUrl(it.context, Uri.parse(getItem(adapterPosition).url))
+                customTabsIntent.launchUrl(
+                    it.context,
+                    Uri.parse(getItem(adapterPosition).url)
+                )
             }
 
             binding.shareButton.setOnClickListener {
-                shareLink(getItem(adapterPosition).url, it)
+                shareLink(getItem(adapterPosition), it)
             }
         }
 
-        private fun shareLink(url: String, view: View) {
+        private fun shareLink(item: News, view: View) {
             val sendIntent: Intent = Intent().apply {
                 action = Intent.ACTION_SEND
-                putExtra(Intent.EXTRA_TEXT, url)
+                putExtra(Intent.EXTRA_TEXT, item.url)
                 type = "text/plain"
             }
 
@@ -61,7 +66,8 @@ class NewsListAdapter : ListAdapter<News, NewsListAdapter.ViewHolder>(COMPARATOR
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int):
+            ViewHolder {
         return ViewHolder(
             NewsItemBinding.inflate(
                 LayoutInflater.from(parent.context),
